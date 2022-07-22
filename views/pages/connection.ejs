@@ -27,16 +27,26 @@
             </div>
             <div class="col-lg-6 col-12">
                 <div class="my__account__wrapper">
+                    <% if (locals.flash && locals.flash.error) {%> 
+                        <div class="alert alert-danger">
+                            <strong>Error!</strong><%= flash.error %>
+                        </div>
+                    <% } %>
+                    <% if (locals.flash && locals.flash.success) {%> 
+                        <div class="alert alert-success">
+                            <strong>good!</strong><%= flash.success %>
+                        </div>
+                    <% } %>
                     <h3 class="account__title">Login</h3>
-                    <form action="#">
+                    <form action="" method="post">
                         <div class="account__form">
                             <div class="input__box">
-                                <label>Username or email address <span>*</span></label>
-                                <input type="text">
+                                <label>Email address <span>*</span></label>
+                                <input type="text" name="email">
                             </div>
                             <div class="input__box">
                                 <label>Password<span>*</span></label>
-                                <input type="text">
+                                <input type="password" name="password">
                             </div>
                             <div class="form__btn">
                                 <button>Login</button>
@@ -47,7 +57,7 @@
                             </div>
                             <a class="forget_pass" href="#">Lost your password?</a>
                             
-                            <a class="forget_pass d-flex justify-content-end align-items-center" href="/inscription">Create an account</a>
+                            <a class="forget_pass d-flex justify-content-end align-items-center" href="/user/inscription">Create an account</a>
                             
                         </div>
                     </form>

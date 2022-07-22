@@ -3,10 +3,8 @@
 const express=require('express')
 const router=express.Router()
 
-//getter du controller 
-const index = require('../controller/livre');
+let index=require('../controller/index')
 
-//route for get all livres
 router.get('/',index)
 
 module.exports=router

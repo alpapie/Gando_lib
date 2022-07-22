@@ -1,1 +1,3 @@
-node_module/
+.env
+balitole.md
+node_modules

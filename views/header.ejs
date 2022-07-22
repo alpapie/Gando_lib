@@ -66,8 +66,14 @@
 					</div>
 					<div class="col-md-6 col-sm-6 col-6 col-lg-2" >
 						<ul class="header__sidebar__right d-flex justify-content-end align-items-center">
-							<li class="ml-10"><a style="color:aliceblue !important" href="/connexion"><b>Connection/s'identifier</b> </a>
+							<% if (locals.isAuth) { %>
+							 <%- include('./pages/compte') -%> 
+							<%= locals.isAuth %> 
+							<% } else { %>
+							 
+							<li class="ml-10"><a style="color:rgb(56, 35, 36) !important" href="/user/connection"><b>Connection/s'identifier</b> </a>
 							</li>
+							<% } %>
 						</ul>
 					</div>
 				</div>

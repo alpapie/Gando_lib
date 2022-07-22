@@ -22,26 +22,97 @@
 <section class="my_account_area pt--80 pb--55 bg--white">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-2">
 
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-8">
                 <div class="my__account__wrapper">
+                    <% if (locals.flash && locals.flash.error) {%> 
+                        <div class="alert alert-danger">
+                            <strong>Error!</strong><%= flash.error %>
+                        </div>
+                    <% } %>
+                    <% if (locals.flash && locals.flash.success) {%> 
+                        <div class="alert alert-success">
+                            <strong>good!</strong><%= flash.success %>
+                        </div>
+                    <% } %>
                     <h3 class="account__title">Register</h3>
-                    <form action="#">
+                    <form action="" method="post">
                         <div class="account__form">
-                            <div class="input__box">
+                            <div class="row">
+                                 <input type="hidden" name="role" value="user">
+                                <div class="col-lg-6 ">
+                                    <div class="input__box">
+
+                                        <label>Prenom <span>*</span></label>
+                                        <input type="text" name="prenom" placeholder="votre prenom">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input__box">
+                                        <label>Nom <span>*</span></label>
+                                        <input type="text" name="nom" placeholder="votre nom">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input__box">
+                                        <label>Email <span>*</span></label>
+                                        <input type="email" name="email" placeholder="test@gmail.com">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input__box">
+                                        <label>Ecole ou ntreprise de travail</label>
+                                        <input type="text" name="entreprise" placeholder="ecole polytechnique de thies">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input__box">
+                                        <label>adress 1 </label>
+                                        <input type="text" name="adress" placeholder=" Thies,Mbour">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input__box">
+                                        <label>adress 2</label>
+                                        <input type="text" name="adress1" placeholder="Nianing">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input__box">
+                                        <label>Numero</label>
+                                        <input type="text" name="numero" minlength="9" maxlength="9" placeholder="77 999 99 99">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input__box">
+                                        <label>Mot de passe</label>
+                                        <input type="password" name="password"  minlength="6" placeholder="min 6 caractaire">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                   
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input__box">
+                                        <label>Confirmer le mot de passe </label>
+                                        <input type="password" name="passwordverif" minlength="6" placeholder="min 6 caractaire">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="input__box">
                                 <label>Email address <span>*</span></label>
                                 <input type="email">
                             </div>
                             <div class="input__box">
                                 <label>Password<span>*</span></label>
                                 <input type="password">
-                            </div>
+                            </div> -->
                             <div class="form__btn">
                                 <button>Register</button>
                             </div>
-                            <a class="forget_pass d-flex justify-content-end align-items-center" href="/connexion">j'ai deja un compte</a>
+                            <a class="forget_pass d-flex justify-content-end align-items-center" href="/user/connection">j'ai deja un compte</a>
                         </div>
                     </form>
                     
