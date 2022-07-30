@@ -43,11 +43,6 @@ module.exports= [
           "infoLink": "http://books.google.com/books?id=8Wo4AAAAIAAJ&dq=sn&hl=&source=gbs_api",
           "canonicalVolumeLink": "https://books.google.com/books/about/SN_voyage_au_bout_de_la_Noire.html?hl=&id=8Wo4AAAAIAAJ"
         },
-        "saleInfo": {
-          "country": "SN",
-          "saleability": "NOT_FOR_SALE",
-          "isEbook": false
-        },
         "accessInfo": {
           "country": "SN",
           "viewability": "NO_PAGES",
