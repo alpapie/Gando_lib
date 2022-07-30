@@ -10,7 +10,10 @@ let create= async(req,res)=>{
 let store= async(req,res)=>{
 
     // console.log(req.files)
+    //les different extension de fichier pris en compte
         const allowedExtensions = ['pdf','doc','docx','xls','xlsx','ppt','pptx','txt']
+
+        //le size max
         const size=1*1024*1000
         const extension = req.files.originalname.split('.').pop()
         if(allowedExtensions.includes(extension)){
