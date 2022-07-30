@@ -19,7 +19,7 @@ let store= async(req,res)=>{
                req.body.fichier=req.files.path
                console.log(req.body)
             }else{
-                req.flash('error',"telecharger un fichier de moin de 1")
+                req.flash('error',"telecharger un fichier de moin de 1mb")
                 return res.redirect('/dashboard/add_doc')
             }
         }else{
@@ -33,8 +33,10 @@ let store= async(req,res)=>{
         console.log(err)
     }
     
-    res.json({doc})
-    // return res.redirect('/dashboard/index')
+    // res.json({doc})
+    // // return res.redirect('/dashboard/index')
+     req.flash('error',"veiller remplir tous les champs du form")
+    return res.redirect('/dashboard/add_doc')
 }
 module.exports={
     index,create,store
