@@ -9,8 +9,7 @@ let create= async(req,res)=>{
 }
 let store= async(req,res)=>{
 
-    console.log(req.files)
-    try{
+    // console.log(req.files)
         const allowedExtensions = ['pdf','doc','docx','xls','xlsx','ppt','pptx','txt']
         const size=1*1024*1000
         const extension = req.files.originalname.split('.').pop()
@@ -26,12 +25,6 @@ let store= async(req,res)=>{
             req.flash('error',"veiller choisir une donne extension")
             return res.redirect('/dashboard/add_doc')
         }
-        
-    }catch(err){
-        // req.flash('error',"veiller remplir tous les champs du form")
-        // return res.redirect('/dashboard/add_doc')
-        console.log(err)
-    }
     
     // res.json({doc})
     // // return res.redirect('/dashboard/index')
