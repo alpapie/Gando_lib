@@ -1,0 +1,138 @@
+<%- include('../header'); -%> 
+<%- include ('./sidebar.ejs'); -%> 
+<!-- Start My Account Area -->
+<!-- certaines div son ouvert dans le side bare et fermer ici -->
+
+            <div class="col-lg-9 order-1 order-lg-2">
+                <section class="my_account_area pt--80 pb--55 bg--white">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="my__account__wrapper">
+                                <% if (locals.flash && locals.flash.error) {%> 
+                                    <div class="alert alert-danger">
+                                        <strong>Error!</strong><%= flash.error %>
+                                    </div>
+                                <% } %>
+                                
+                                <h3 class="account__title">Register</h3>
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    <div class="account__form">
+                                        <div class="row">
+                                            <input type="hidden" name="user_id" value="1">
+                                            <input type="hidden" name="type" value="article">
+                                            <div class="col-lg-6 ">
+                                                <div class="input__box">
+
+                                                    <label>titre <span>*</span></label>
+                                                    <input type="text" required name="titre">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 ">
+                                                <div class="input__box">
+
+                                                    <label>editeur <span>*</span></label>
+                                                    <input type="text" required name="editeur">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6"> <label class="input__box">langue <span>*</span></label>
+                                                <div class="">
+                                                        <label class="radio-inline mr-3"><input type="radio" name="langue" checked>Francais</label>
+                                                        <label class="radio-inline"><input type="radio" name="langue">Anglais</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">category<span>*</span></label>
+                                                            <select id="choices-multiple-remove-button" placeholder="Select upto 5 tags" required name="category" multiple>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                                <option>6</option>
+                                                            </select>
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="col-lg-6">
+                                                <div class="input__box">
+                                                    <label>nombre de page <span>*</span></label>
+                                                    <input type="number" required name="page" min="1">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="input__box">
+                                                    <label>isbn10</label>
+                                                    <input type="text"  name="isbn10" >
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="input__box">
+                                                    <label>Date de cration <span>*</span></label>
+                                                    <input type="date" required name="annee">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="input__box">
+                                                    <label>fichier <span>*</span></label>
+                                                    <input type="file" required name="fichier" >
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="input__box">
+                                                    <label>Description <span>*</span></label>
+                                                    <textarea name="description" id="" cols="40" rows="5">Description</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h2 class="align-center">Auteur(s)</h2>
+                                        <div class="row account__form">
+                                            
+                                            <div class="col-lg-4">
+                                                <div class="input__box">
+                                                    <label>Nom <span>*</span></label>
+                                                    <input type="text" name="nom" placeholder="mamoudou ndiaye">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="input__box">
+                                                    <label>Email <span>*</span></label>
+                                                    <input type="email" name="email">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="input__box">
+                                                    <label>telephone <span>*</span></label>
+                                                    <input type="text" name="numero">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form__btn ">
+                                            <button>Register</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../footer'); -%> 
+<script>
+$(document).ready(function(){
+    
+    var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+       removeItemButton: true,
+       maxItemCount:5,
+       searchResultLimit:5,
+       renderChoiceLimit:5
+     }); 
+    
+    
+});
+</script>

@@ -64,7 +64,7 @@ let connect= (req,res)=>{
                 // //on enregistre le token dans la session
                 req.session.token=token
                 //on renvoie vers la page de connexion
-                return res.redirect('/user/dashboard/index')
+                return res.redirect('/dashboard/index')
             }
             //si le mot de passe est incorrect
             req.flash('error',"Identifiant ou mot de passe incorrecte")
@@ -78,10 +78,18 @@ let connect= (req,res)=>{
         console.log(error)
     })
 }
+let logouter = (req,res)=>{
+    //on supprime la session
+    req.session.destroy()
+    //on renvoie vers la page de connexion
+    return res.redirect('/user/connection')
+}
+
 module.exports={
     signPage,
     signUp,
     connectpage,
-    connect
+    connect,
+    logouter
 } 
 

@@ -11,6 +11,7 @@ var Categorie=require('../models').category
          raw:true,
    
      }).then(categorys => { return categorys})
+     
      req.isAuthenticated()
     res.render('pages/livre',{categorys})
  }

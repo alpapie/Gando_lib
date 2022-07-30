@@ -1,4 +1,4 @@
-const {signPage,signUp,connect,connectpage}=require('../controller/user')
+const {signPage,signUp,connect,connectpage,logouter}=require('../controller/user')
 
 const app= require('express')
 const { dashboard } = require('../controller/Dashboard')
@@ -17,6 +17,8 @@ router.get('/connection',connectpage)
 //route for auth
 router.post('/connection',connect)
 
-router.get('/dashboard/index',auth,dashboard)
+// router.get('/dashboard/index',auth,dashboard);
+
+router.get('/logout',logouter);
 
 module.exports=router

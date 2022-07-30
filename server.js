@@ -12,6 +12,8 @@ app =express()
 //get session dans express
 var session = require('express-session')
 
+
+
 //monteur de template
 app.set('view engine', 'ejs')
 
@@ -43,10 +45,12 @@ app.use('/',require('./routes/route'))
 
 app.use('/livre',require('./routes/livre'))
 
-// route pouur le traitement des des donne du user a savoir (connection ,inscription)
+// route pouur le traitement des donne du user a savoir (connection ,inscription)
 app.use('/user',require('./routes/user'))
 
 
+//le dashboard
+app.use('/dashboard',require('./routes/Dashbord'))
 app.get('/article',(req, res)=>{
 
     res.render('pages/article',{'categorys':categorys})

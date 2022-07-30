@@ -8,7 +8,7 @@ module.exports=(req,res,next)=>{
         if (token) {
             //verification du token
             let verif=jwt.verify(token,process.env.ACCESS_TOKEN)
-            console.log(verif)
+            // console.log(verif)
             let user=verif.user
             req.auth={
                 user
