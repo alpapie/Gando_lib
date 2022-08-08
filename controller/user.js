@@ -3,9 +3,15 @@ const User= require('../models').user;
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 
+
 //la methode qui renvoi le formulaire
 let signPage =async (req,res)=>{
-    res.render('pages/inscription')
+    let data=null
+    if(req.session.dataform){
+        data=req.session.dataform
+    }
+    req.session.dataform=undefined
+    res.render('pages/inscription',{data})
 }
 
 //la methode qui traite le formulaire d'inscription
@@ -14,8 +20,18 @@ let signUp =async (req,res)=>{
     
     if (req.body){
         let {prenom,nom,email,password,passwordverif,entreprise,adress,adress1,role,numero}= req.body
+
+        //on verify si l'email existe deja
+        const user= await User.findOne({where:{email},
+            raw:true
+        })
+        if(user){
+            req.session.dataform=req.body
+            req.flash('error',"l'email existe deja")
+            return res.redirect('/user/inscription')
+        }
         //on verifie le password et sa confirmation
-        if (password === passwordverif){
+        if (password === passwordverif ){
         //la fonction de hashage qui renvoi un promise avec le hash
         bcrypt.hash(password,10).
         then(hash=>{
@@ -28,6 +44,7 @@ let signUp =async (req,res)=>{
         //tous c'est bien passer on renvoie vers la page de connexion
         return res.redirect('/user/connection')
         }else{
+            req.session.dataform=req.body
             //le middleware flash pour renvoi un message d'erreur
             req.flash('error',"les mot de passe ne corresponde pas")
             return res.redirect('/user/inscription')
@@ -38,7 +55,12 @@ let signUp =async (req,res)=>{
 }
 
 let connectpage =async (req,res)=>{
-    res.render('pages/connection')
+    let data=null
+    if(req.session.dataform){
+        data=req.session.dataform
+    }
+    req.session.dataform=undefined
+    res.render('pages/connection',{data})
 }
 
 let connect= (req,res)=>{
@@ -52,7 +74,7 @@ let connect= (req,res)=>{
         return res.redirect('/user/connection')
         }
         //on verifie le mot de passe
-        
+
         bcrypt.compare(password,user.password).
         then(result=>{
             //supression de apassword
@@ -67,9 +89,11 @@ let connect= (req,res)=>{
                 return res.redirect('/dashboard/index')
             }
             //si le mot de passe est incorrect
+            req.session.dataform=req.body
             req.flash('error',"Identifiant ou mot de passe incorrecte")
             return res.redirect('/user/connection')
         }).catch(err=>{
+            req.session.dataform=req.body
             req.flash('error',"Identifiant ou mot de passe incorrecte")
             return res.redirect('/user/connection')
         }
@@ -90,6 +114,7 @@ module.exports={
     signUp,
     connectpage,
     connect,
-    logouter
+    logouter,
+    
 } 
 

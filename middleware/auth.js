@@ -13,6 +13,8 @@ module.exports=(req,res,next)=>{
             req.auth={
                 user
             }
+            res.locals.user=user
+            // console.log(user)
             req.session.isAuth=true
             req.isAuthenticated()
             next()

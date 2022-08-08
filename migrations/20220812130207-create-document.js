@@ -46,7 +46,7 @@ module.exports = {
       },
       isbn10: {
         allowNull: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       type: {
         allowNull: false,
@@ -56,6 +56,14 @@ module.exports = {
       category: {
         allowNull: false,
         type: Sequelize.STRING
+      },
+      thumb:{
+        allowNull:true,
+        type: Sequelize.STRING
+      },
+      size: {
+        allowNull:true,
+        type: Sequelize.INTEGER
       },
       note: {
         allowNull: true,

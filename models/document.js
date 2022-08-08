@@ -35,10 +35,12 @@ module.exports = (sequelize, DataTypes) => {
     editeur: DataTypes.STRING,
     page: DataTypes.INTEGER,
     fichier: DataTypes.STRING,
-    isbn10: DataTypes.INTEGER,
+    isbn10: DataTypes.STRING,
     type: DataTypes.ENUM('livre','article'),
     category: DataTypes.STRING,
-    note: DataTypes.STRING
+    thumb: DataTypes.STRING,
+    note: DataTypes.STRING,
+    size: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'document',

@@ -12,10 +12,6 @@ module.exports = {
          allowNull: false,
         type: Sequelize.STRING
       },
-      prenom: {
-         allowNull: false,
-        type: Sequelize.STRING
-      },
       email: {
          allowNull: false,
         type: Sequelize.STRING

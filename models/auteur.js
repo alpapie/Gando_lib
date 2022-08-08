@@ -18,7 +18,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   auteur.init({
     nom: DataTypes.STRING,
-    prenom: DataTypes.STRING,
     email: DataTypes.STRING,
     numero: DataTypes.STRING
   }, {

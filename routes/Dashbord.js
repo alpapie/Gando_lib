@@ -1,21 +1,18 @@
 const app= require('express')
-const { index,create,store } = require('../controller/Dashboard')
+const { index,create,store,edit} = require('../controller/Dashboard')
 const auth = require('../middleware/auth')
 const router =app.Router()
-const filecontrole=require('../middleware/fileControl')
+
 //pour gerer le multi part du formulaire
 const multer = require('multer')
 const storagemiddleware = multer.diskStorage({
     destination : (req,file,cb)=>{
-        cb(null,"./uploads")
+        cb(null,"./uploads/files")
     } ,
     filename : (req, file, cb) => {
             cb(null, file.originalname.split('.')[0] + '_' + Date.now() 
             +'.'+ file.originalname.split('.').pop())
-        },
-    fileFilter: (req,file,cb)=>{
-        
-    }
+        }
 });
 
 const upload= multer({storage:storagemiddleware})
@@ -27,5 +24,8 @@ router.get('/add_doc',auth,create);
 
 //traitement de la requete ajout de document
 router.post('/add_doc',auth,upload.single("fichier"),store);
+
+//form for modification of document
+router.get('/edit_doc/:id',auth,edit)
 
 module.exports=router

@@ -46,43 +46,43 @@
                                     <div class="input__box">
 
                                         <label>Prenom <span>*</span></label>
-                                        <input type="text" name="prenom" placeholder="votre prenom">
+                                        <input type="text" name="prenom" value="<%= data? data.prenom:''  %>">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="input__box">
                                         <label>Nom <span>*</span></label>
-                                        <input type="text" name="nom" placeholder="votre nom">
+                                        <input type="text" name="nom" value="<%= data? data.nom :'' %>">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="input__box">
                                         <label>Email <span>*</span></label>
-                                        <input type="email" name="email" placeholder="test@gmail.com">
+                                        <input type="email" name="email" value="<%= data? data.email :'' %>">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="input__box">
                                         <label>Ecole ou ntreprise de travail</label>
-                                        <input type="text" name="entreprise" placeholder="ecole polytechnique de thies">
+                                        <input type="text" name="entreprise" value="<%= data? data.entreprise :'' %>" >
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="input__box">
                                         <label>adress 1 </label>
-                                        <input type="text" name="adress" placeholder=" Thies,Mbour">
+                                        <input type="text" name="adress" value="<%= data? data.adress :'' %>" >
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="input__box">
                                         <label>adress 2</label>
-                                        <input type="text" name="adress1" placeholder="Nianing">
+                                        <input type="text" name="adress1" value="<%= data? data.adress1 :'' %>" >
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="input__box">
                                         <label>Numero</label>
-                                        <input type="text" name="numero" minlength="9" maxlength="9" placeholder="77 999 99 99">
+                                        <input type="text" name="numero" minlength="9" maxlength="9" value="<%= data? data.numero :'' %>" >
                                     </div>
                                 </div>
                                 <div class="col-lg-6">

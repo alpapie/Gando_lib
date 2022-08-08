@@ -1,6 +1,8 @@
 //recuprearion de render dans ejs
 const { render } = require('ejs')
 
+const fs = require('fs')
+
 //import passport 
 let passport =require('passport') 
 let passportLocale =require('passport-local') 
