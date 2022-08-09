@@ -3,8 +3,8 @@ const Auteur = require('../../models').auteur
 const Ecrit = require('../../models').ecrit
 const category = require('../../models').category
 
-const fs = require('fs')
-, gm = require('gm');
+const fs = require('fs');
+const pdf = require('pdf-thumbnail');
 //la page d'acceuil du dashboard
 let index = async(req,res)=>{
     //on recuper le user a l'aide du middleware auth qui passe les donne du user dans la requete
@@ -75,21 +75,28 @@ let store= async(req,res)=>{
             data.fichier=pathfile
 
             //creation du thumbnail
-            let imgname= req.file.originalname.split('.')[0] + '_' + Date.now() 
-            +'.jpeg'
-            let gmthumb=gm(pathfile).thumb(150 , 150 , './uploads/thumbnails'+imgname, 100,err=>{
-                if(err){
-                    console.log(err)
-                }
-            })
-
+            // let imgname= req.file.originalname.split('.')[0] + '_' + Date.now() 
+            // +'.jpeg'
+            // let gmthumb=gm(pathfile).thumb(150 , 150 , './uploads/thumbnails'+imgname, 100,err=>{
+            //     if(err){
+            //         console.log(err)
+            //     }
+            // })
+          
             //des requet async pour stocker le document dansles table document auteur et ecrit
             const document=await Document.create(data).then(async doc=>{
                 const auteur= await Auteur.create(data).then(async aut=>{
                     const ecrit= await Ecrit.create({aut_id:aut.id , doc_id:doc.id})
                 })
             })   
-            console.log(gmthumb)
+            const pdfBuffer=fs.readFileSync(pathfile)
+            pdf(
+                pdfBuffer
+              )
+                .then(data /*Stream of the image*/ => {
+                  console.log(data)
+                })
+                .catch(err => console.log(err))
             //on renvoie un message de succes au index dashbord
             req.flash('success',"document enregistrer avec success")
             return res.redirect('/dashboard/index')
