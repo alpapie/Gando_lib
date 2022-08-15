@@ -1,0 +1,347 @@
+<%- include('../header'); -%>
+<%- include('./secondHeader.ejs') -%> 
+<style>
+.ebook-main {
+    background-color: #fff;
+    -webkit-box-shadow: 0 0 4px 2px rgb(189 189 189);
+    -moz-box-shadow: 0 0 4px 2px rgba(189,189,189,1);
+    box-shadow: 0 0 4px 2px rgb(189 189 189);
+    height: 295px;
+}
+div {
+    display: block;
+}
+.ebook-left {
+    float: left;
+    margin-right: 0px;
+  
+}
+.ebook-right {
+    padding: 17px 15px 0 250px;
+}
+.ebook-right-inner {
+    height: 295px;
+   
+}
+#share-buttons {
+    position: absolute;
+    bottom: 4px;
+    z-index: 10;
+}
+
+
+h1 {
+    line-height: 35px;
+    margin: 0;
+    color: #585858;
+}
+.ebook-file-info {
+    margin-top: 9px;
+    font-weight: 300;
+    font-size: 15px;
+}
+.ebook-author {
+    font-weight: 300;
+    margin-top: 4px;
+    max-height: 68px;
+    overflow: hidden;
+    line-height: 23px;
+}
+.ebook-tags {
+    max-height: 39px;
+    text-align: left;
+    font-size: 12px;
+    line-height: 19px;
+    overflow: hidden!important;
+    margin-top: 10px;
+}
+.ebook-buttons {
+    margin-right: 6px;
+    position: relative;
+    top: -70px;
+    text-align: right;
+    z-index: 2;
+}
+.ebook-title {
+    font-weight: 300;
+    line-height: 43px;
+    white-space: normal;
+    color: #212121;
+    font-size: 29px;
+    margin: 0 0 0 0;
+    max-height: 120px;
+    overflow: hidden;
+}
+.ebook-img {
+    width: 210px;
+    height: 295px;
+    float: left;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+#similar-files {
+    font-weight: 300;
+    color: #e59285;
+    font-size: 26px;
+}
+.select-style {
+    -webkit-appearance: inherit;
+    -moz-appearance: inherit;
+    -webkit-border-radius: 2px;
+    -webkit-box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+    -webkit-padding-end: 20px;
+    -webkit-padding-start: 2px;
+    -webkit-user-select: none;
+    background-image: url(/assets/img/arrow-down.png.pagespeed.ce.JVBy7Ectjb.png);
+    background-position: 97% center;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    color: #0070a7;
+    font-size: 13px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0 13px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 400;
+    height: 33px;
+}
+.ml-1, .mx-1 {
+    margin-left: 0.25rem!important;
+}
+  
+    .ml-1, .mx-1 {
+    margin-left: 0.25rem!important;
+}
+    .mr-1, .mx-1 {
+    margin-right: 0.25rem!important;
+}
+.fi-year, .fi-pagecount, .fi-size {
+    color: #2f2f2f;
+}
+.file-img {
+
+    z-index: 10;
+    width: 71px;
+    height: 98px;
+    border-radius: 3px 0 0 3px;
+}
+
+.file-info {
+    margin-top: 2px;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0;
+    margin-bottom: 3px;
+}
+
+h2 {
+    text-decoration: none;
+    padding: 6px 6px 0 0;
+    color: #e59285;;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 0;
+    line-height: 27px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    max-height: 60px;
+    -webkit-transition: all .20s ease-in-out;
+    -moz-transition: all .20s ease-in-out;
+    transition: all .20s ease-in-out;
+    letter-spacing: .5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+a {
+    color: #e59285;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+.file-right {
+    padding: 0 3px 0 10px;
+    overflow: hidden;
+    height: 97px;
+    line-height: 27px;
+    color: #767676;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: .2px;
+    word-break: break-word;
+}
+
+.file-left {
+    float: left;
+    margin-right: 5px;
+    position: relative;
+}
+
+.col-sm {
+    height: 100px;
+    background: #fff;
+    margin-bottom: 17px;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    padding: 0;
+    font-size: 13px;
+   
+}
+</style>
+<%- include ('./sidebar.ejs'); -%>
+        <div class="col-lg-9 mb-5">
+            <div class="ebook-main" itemprop="mainEntity" itemscope="" itemtype="http://schema.org/Book">
+                <div class="ebook-left">
+                    <a href="/give-and-take-why-helping-others-drives-our-success-d58864799.html" rel="nofollow" onclick="c();">
+                        <img class="ebook-img" itemprop="image"
+                            src="https://cdn.asaha.com/assets/thumbs/653/653f249a58f438ef343c5da5f023203d.jpg"
+                            alt="Give and Take: WHY HELPING OTHERS DRIVES OUR SUCCESS"
+                            title="Give and Take: WHY HELPING OTHERS DRIVES OUR SUCCESS" border="0">
+                    </a>
+                </div>
+                <div class="ebook-right">
+                    <div class="ebook-right-inner">
+                        <div id="share-buttons">
+                            <div class="addthis_inline_share_toolbox"></div>
+                        </div>
+                        <span class="ebook-title " >Give and Take: WHY HELPING OTHERS DRIVES OUR SUCCESS</span>
+                        <div class="ebook-file-info">
+                            <span class="info-green">260 Pages</span> <span class="m-info">·</span> <span
+                                class="info-green">2011</span> <span class="m-info">·</span>
+                            <span class="info-green">1.57 MB</span> <span class="m-info">·</span>
+                            <span class="info-green hidemobile">923,082 Downloads</span><span class="m-info hidemobile">·</span>
+                            <span class="info-green">English</span><br>
+                        </div>
+                        <div class="ebook-author">
+                        </div>
+                        <div class="ebook-tags"><i class="fa fa-plus fa-plus-fix mr-1" aria-hidden="true"></i><a
+                                href="/category/113" onclick="ga('send', 'event', 'CategoryLink', 'EbookInfo');">Editor's Picks</a>
+                            <i class="fa fa-plus fa-plus-fix ml-2 mr-1" aria-hidden="true" style="margin-left:6px;"></i> <a
+                                href="/category/112" onclick="ga('send', 'event', 'CategoryLink', 'EbookInfo');">Most Popular</a> <i
+                                class="fa fa-plus fa-plus-fix ml-2 mr-1" aria-hidden="true" style="margin-left:6px;"></i> <a
+                                href="/category/10" onclick="ga('send', 'event', 'CategoryLink', 'EbookInfo');">Religion</a> <i
+                                class="fa fa-plus fa-plus-fix ml-2 mr-1" aria-hidden="true" style="margin-left:6px;"></i> <a
+                                href="/category/13" onclick="ga('send', 'event', 'CategoryLink', 'EbookInfo');">Spiritualty</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ebook-buttons">
+                    <button type="button" id="previewButtonMain" class="btn btn-warning btn-responsive" data-id="58864799"
+                        data-preview="/ebook/preview?id=58864799&amp;session=c55ee8a467a370dd11fcf9dcec21f426"
+                        data-download-page="/give-and-take-why-helping-others-drives-our-success-d58864799.html"
+                        style="font-weight:500;">
+                        Preview </button>
+                    <span id="download-button"><a id="download-button-link" class="btn btn-primary btn-responsive"
+                            href="/give-and-take-why-helping-others-drives-our-success-d58864799.html" rel="nofollow"
+                            onclick="c();ga('send', 'event', 'Download', 'ebook-page');setCookie('disableVideo', 1, 1);"
+                            role="button" style="font-weight:500;">Download</a></span>
+                    <button id="btnGroupDrop1" type="button"
+                        class="btn btn-primary btn-more dropdown-toggle dropdown-toggle-no-arrow" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    
+                </div>
+            </div>
+           
+            <div class="mb-3 mt-3" id="similar-files">
+                <font style="vertical-align: inherit;"><span class="hidemobile">
+                        <font style="vertical-align: inherit;">Article</font>
+                    </span>
+                    <font style="vertical-align: inherit;">
+                        similaires</font>
+                </font><span class="hidemobile">
+                    <font style="vertical-align: inherit;"></font>
+                </span>
+                <div style="float:right;">
+                    <select class="select-style" tabindex="9" onchange="
+                                                                            loadSimilar(this.value, 0);
+                                                        ga('send', 'event', 'Filter By Page Count', 'ebook-page');"
+                        style="width: 163px;font-size: 13px;">
+                        <option value="">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Filtrer par nombre de pages</font>
+                            </font>
+                        </option>
+                        <option value="1-24">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">1-24 pages</font>
+                            </font>
+                        </option>
+                        <option value="25-50">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">25-50 pages</font>
+                            </font>
+                        </option>
+                        <option value="51-100">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">51-100 pages</font>
+                            </font>
+                        </option>
+                        <option value="100-*">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Plus de 100 pages</font>
+                            </font>
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <% for (document of simdoc){ %>   
+                <div class="col-sm align-left">
+                    <div class="file-left">
+                        <a href="/detailFile/<%= document.id %>"
+                            data-id="60737124">
+                            <img class="img-zoom file-img"
+                                src="<%= document.thumb ? document.thumb : '/icon/file.png'%>"
+                                data-original="<%= document.thumbnail %>"
+                                alt="<%= document.titre %>"
+                                title="<%= document.titre %>"
+                                loading="lazy">
+                        </a>
+                    </div>
+                    <div class="file-right">
+                        <a href="/dashboard/file/detailFile/<%= document.id %>"
+                            data-loc="1">
+                            <h2><%= document.titre %></h2>
+                        </a>
+                        <div class="file-info" data-id="60737124">
+                            <span class="fi-pagecount "><%= document.page %>  Pages</span><span class="ml-1 mr-1">·</span><span
+                                class="fi-year "><%= document.annee.getFullYear();%> </span><span class="ml-1 mr-1">·</span><span
+                                class="fi-size hidemobile"><%= document.size.toFixed(2) %>  MB</span> <br>
+                        </div>
+                        <% for (auteur of document.auteur ){ %> 
+                            <%= auteur["auteur.nom"] %> &nbsp;
+                        <% } %> 
+                        <span class="float-right">
+                             <button class="btn btn-warning btn-responsive btn-sm mr-2">editer</button>
+                             <button class="btn btn-danger btn-responsive btn-sm">suprimer</button>
+                        </span>
+                           
+                    </div>
+                    
+
+                </div>
+            <% } %>
+        </div>
+</div>
+</div>
+</div>
+
+
+<%- include('../footer') ; -%>

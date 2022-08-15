@@ -94,6 +94,7 @@ img {
    
 }
 </style>
+<%- include('./secondHeader.ejs') -%> 
     <%- include ('./sidebar.ejs'); -%>
             <div class="col-lg-9">
                 <% for (document of documents){ %>   
@@ -102,7 +103,7 @@ img {
                             <a href="/detailFile/<%= document.id %>"
                                 data-id="60737124">
                                 <img class="img-zoom file-img"
-                                    src="<%= document.thumbnail %>"
+                                    src="<%= document.thumb ? document.thumb : '/icon/file.png'%>"
                                     data-original="<%= document.thumbnail %>"
                                     alt="<%= document.titre %>"
                                     title="<%= document.titre %>"
@@ -110,7 +111,7 @@ img {
                             </a>
                         </div>
                         <div class="file-right">
-                            <a href="/detailFile/<%= document.id %>"
+                            <a href="/dashboard/file/detailFile/<%= document.id %>"
                                 data-loc="1">
                                 <h2><%= document.titre %></h2>
                             </a>
@@ -122,7 +123,14 @@ img {
                             <% for (auteur of document.auteur ){ %> 
                                 <%= auteur["auteur.nom"] %> &nbsp;
                             <% } %> 
+                            <span class="float-right">
+                                 <button class="btn btn-warning btn-responsive btn-sm mr-2">editer</button>
+                                 <button class="btn btn-danger btn-responsive btn-sm">suprimer</button>
+                            </span>
+                               
                         </div>
+                        
+
                     </div>
                 <% } %>
             </div>

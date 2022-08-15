@@ -28,8 +28,9 @@
                         <h3 class="wedget__title">Product Categories</h3>
                         <ul>
                             <% for (category of categorys){ %> 
-                                <li><a href="/category/<%= category.intituler %> "><%= category %> </a></li> 
-                                <% } %>
+                                <li><a href="/category/<%= category.intituler %> "><%= category.intituler %> </a></li> 
+                            <% } %>
+                            
                         </ul>
                     </aside>
                     <aside class="wedget__categories pro--range">

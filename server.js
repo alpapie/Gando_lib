@@ -41,6 +41,9 @@ app.use( session({
 app.use(require('./middleware/flash'))
 //on utilise le middleware isauth pour verifier si l'utilisateur est connecter
 app.use(require('./middleware/isauth'))
+//middleware pour les Category
+app.use(require('./middleware/getCagetegory'))
+
 
 //initialisation des chemins
 app.use('/',require('./routes/route'))
@@ -50,12 +53,12 @@ app.use('/livre',require('./routes/livre'))
 // route pouur le traitement des donne du user a savoir (connection ,inscription)
 app.use('/user',require('./routes/user'))
 
-
 //le dashboard
 app.use('/dashboard',require('./routes/Dashbord'))
-app.get('/article',(req, res)=>{
 
-    res.render('pages/article',{'categorys':categorys})
+
+app.get('/article',(req, res)=>{
+    res.render('pages/article',)
 })
 
 app.get('/a-propos',(req, res)=>{

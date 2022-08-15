@@ -1,123 +1,136 @@
 <%- include('../header'); -%> 
-<%- include ('./sidebar.ejs'); -%> 
+<%- include('./secondHeader.ejs') -%> 
 <!-- Start My Account Area -->
 <!-- certaines div son ouvert dans le side bare et fermer ici -->
-
-            <div class="col-lg-9 order-1 order-lg-2">
-                <section class="my_account_area pt--80 pb--55 bg--white">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="my__account__wrapper">
-                                <% if (locals.flash && locals.flash.error) {%> 
-                                    <div class="alert alert-danger">
-                                        <strong>Error!</strong><%= flash.error %>
-                                    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-9 order-1 order-lg-2">
+            <section class="my_account_area pt--80 pb--55 bg--white">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="my__account__wrapper">
+                            <% if (locals.flash && locals.flash.error) {%>
+                                <div class="alert alert-danger">
+                                    <strong>Error!</strong>
+                                    <%= flash.error %>
+                                </div>
                                 <% } %>
-                                
-                                <h3 class="account__title">Register</h3>
-                                <form action="" method="post" enctype="multipart/form-data">
-                                    <div class="account__form">
-                                        <div class="row">
-                                            <input type="hidden" name="user_id" value="<%= user.id %> ">
-                                            <input type="hidden" name="type" value="article">
-                                            <div class="col-lg-6 ">
-                                                <div class="input__box">
+                            <h3 class="account__title">Register Document</h3>
+                            <form action="" method="post" enctype="multipart/form-data">
+                                <div class="account__form">
+                                    <div class="row">
+                                        <input type="hidden" name="user_id" value="<%= user.id %> ">
+                                        <input type="hidden" name="type" value="article">
+                                        <div class="col-lg-6 ">
+                                            <div class="input__box">
 
-                                                    <label>titre <span>*</span></label>
-                                                    <input type="text" required name="titre" value=" <%= data ? data.titre : '' %> ">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 ">
-                                                <div class="input__box">
-
-                                                    <label>editeur <span>*</span></label>
-                                                    <input type="text" required name="editeur" value=" <%= data ? data.editeur : '' %>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6"> <label class="input__box">langue <span>*</span></label>
-                                                <div class="">
-                                                        <label class="radio-inline mr-3"><input type="radio" name="langue" value="Francais" checked>Francais</label>
-                                                        <label class="radio-inline"><input type="radio" name="langue" value="Anglais" >Anglais</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label for="" class="form-label">category<span>*</span></label>
-                                                            <select id="choices-multiple-remove-button" placeholder="Select upto 5 tags" required name="category" multiple>
-                                                                <% for (category of categorys){ %> 
-                                                                <option><%= category.intituler %></option>
-                                                                <% } %>
-                                                            </select>
-                                                </div>
-                                            </div>
-                                           
-                                            <div class="col-lg-6">
-                                                <div class="input__box">
-                                                    <label>nombre de page <span>*</span></label>
-                                                    <input type="number" required name="page" min="1" value=" <%= data ? data.page : '' %>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="input__box">
-                                                    <label>isbn10</label>
-                                                    <input type="text"  name="isbn10" value=" <%= data ? data.isbn10 : '' %>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="input__box">
-                                                    <label>Date de cration <span>*</span></label>
-                                                    <input type="date" required name="annee" value=" <%= data ? data.annee : '' %>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="input__box">
-                                                    <label>fichier <span>*</span></label>
-                                                    <input type="file" required name="fichier" >
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="input__box">
-                                                    <label>Description <span>*</span></label>
-                                                    <textarea name="description" id="" cols="40" rows="5"><%= data ? data.description : '' %></textarea>
-                                                </div>
+                                                <label>titre <span>*</span></label>
+                                                <input type="text" required name="titre"
+                                                    value=" <%= data ? data.titre : '' %> ">
                                             </div>
                                         </div>
-                                        <h2 class="align-center">Auteur(s)</h2>
-                                        <div class="row account__form">
-                                            
-                                            <div class="col-lg-4">
-                                                <div class="input__box">
-                                                    <label>Nom <span>*</span></label>
-                                                    <input type="text" name="nom" placeholder="mamoudou ndiaye" value=" <%= data ? data.nom : '' %>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="input__box">
-                                                    <label>Email <span>*</span></label>
-                                                    <input type="email" name="email" value=" <%= data  ? data.email : '' %>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="input__box">
-                                                    <label>telephone <span>*</span></label>
-                                                    <input type="text" name="numero" value=" <%= data ? data.numero: '' %>">
-                                                </div>
+                                        <div class="col-lg-6 ">
+                                            <div class="input__box">
+
+                                                <label>editeur <span>*</span></label>
+                                                <input type="text" required name="editeur"
+                                                    value=" <%= data ? data.editeur : '' %>">
                                             </div>
                                         </div>
-                                        <div class="form__btn ">
-                                            <button>Register</button>
+                                        <div class="col-lg-6"> <label class="input__box">langue <span>*</span></label>
+                                            <div class="">
+                                                <label class="radio-inline mr-3"><input type="radio" name="langue"
+                                                        value="Francais" checked>Francais</label>
+                                                <label class="radio-inline"><input type="radio" name="langue"
+                                                        value="Anglais">Anglais</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">category<span>*</span></label>
+                                                <select id="choices-multiple-remove-button"
+                                                    placeholder="Select upto 5 tags" required name="category" multiple>
+                                                    <% for (category of categorys){ %>
+                                                        <option>
+                                                            <%= category.intituler %>
+                                                        </option>
+                                                        <% } %>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="input__box">
+                                                <label>nombre de page <span>*</span></label>
+                                                <input type="number" required name="page" min="1"
+                                                    value=" <%= data ? data.page : '' %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="input__box">
+                                                <label>isbn10</label>
+                                                <input type="text" name="isbn10"
+                                                    value=" <%= data ? data.isbn10 : '' %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="input__box">
+                                                <label>Date de cration <span>*</span></label>
+                                                <input type="date" required name="annee"
+                                                    value=" <%= data ? data.annee : '' %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="input__box">
+                                                <label>fichier <span>*</span></label>
+                                                <input type="file" required name="fichier">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="input__box">
+                                                <label>Description <span>*</span></label>
+                                                <textarea name="description" id="" cols="40"
+                                                    rows="5"><%= data ? data.description : '' %></textarea>
+                                            </div>
                                         </div>
                                     </div>
-                                </form>
-                                
-                            </div>
+                                    <h2 class="align-center">Auteur(s)</h2>
+                                    <div class="row account__form">
+
+                                        <div class="col-lg-4">
+                                            <div class="input__box">
+                                                <label>Nom <span>*</span></label>
+                                                <input type="text" name="nom" placeholder="mamoudou ndiaye"
+                                                    value=" <%= data ? data.nom : '' %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="input__box">
+                                                <label>Email <span>*</span></label>
+                                                <input type="email" name="email"
+                                                    value=" <%= data  ? data.email : '' %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="input__box">
+                                                <label>telephone <span>*</span></label>
+                                                <input type="text" name="numero" value=" <%= data ? data.numero: '' %>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form__btn ">
+                                        <button>Register</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </section>
-            </div>
+                </div>
+            </section>
         </div>
     </div>
 </div>
+
 
 <%- include('../footer'); -%> 
 <script>
