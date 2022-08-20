@@ -1,5 +1,5 @@
 const app= require('express')
-const { index,create,store,edit,show} = require('../controller/Dashboard')
+const { index,create,store,edit,update,show,comment_add,destroy} = require('../controller/Dashboard')
 const auth = require('../middleware/auth')
 const router =app.Router()
 
@@ -30,5 +30,13 @@ router.get('/file/detailFile/:id',auth,show);
 
 //form for modification of document
 router.get('/file/file_edit/:id',auth,edit)
+
+//traitement de la requete modification de document
+router.post('/file/file_edit/:id',auth,upload.single("fichier"),update);
+
+//Document comment
+router.post('/file/add_comment',auth,comment_add)
+
+router.get('/file/delete/:id',auth, destroy)
 
 module.exports=router

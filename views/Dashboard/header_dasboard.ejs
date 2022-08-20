@@ -1,0 +1,246 @@
+
+<style>
+    .welcome .tabby > div {
+    border-radius: 4px 4px 0 0;
+    padding: 8px 0 2px 0;
+    position: relative;
+    bottom: -3px;
+    font-weight: 400;
+    color: #767676;
+}
+.welcome.account-uniform {
+    background-color: #194880;
+    color: #ffffff;
+}
+.container:before, .container:after {
+    content: " ";
+    display: table;
+}
+.container:after {
+    clear: both;
+}
+.welcome .tabbys-dynamic {
+    max-width: none;
+    justify-content: flex-start;
+}
+.welcome .tabbys {
+    position: relative;
+    max-width: 500px;
+    display: flex;
+}
+
+.welcome .tabby {
+    float: left !important;
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding: 3px;
+    font-size: 20px !important; 
+}
+.welcome.account-uniform .tabby a.stealth {
+    color: #AEBDE2;
+}
+/* .welcome .tabby.in a.stealth {
+    color: #2c2c2c;
+    border-bottom-color: #2c2c2c;
+} */
+.welcome .tabby a.stealth {
+    color: #767676;
+    
+    border-bottom: 5px solid transparent;
+}
+.stealth:hover {
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+#file-dropper-wrap {
+    float: left;
+    position: relative;
+    text-shadow: none;
+}
+#file-dropper-wrap {
+    float: left;
+    position: relative;
+    text-shadow: none;
+}
+#file-dropper-wrap #file-dropper {
+    -moz-opacity: .9;
+    opacity: .9;
+    filter: alpha(opacity=90);
+    border-radius: 10px;
+    position: absolute;
+    display: none;
+    background-color: white;
+    color: black;
+    z-index: 1;
+    border: 3px solid #ccc;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+}
+#file-dropper-wrap #file-dropper #file-cancel {
+    -moz-opacity: .4;
+    opacity: .4;
+    filter: alpha(opacity=40);
+    display: none;
+    color: red;
+    font-weight: bold;
+    font-size: 2.4rem;
+}
+button.close {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+}
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    filter: alpha(opacity=20);
+}
+[class^="iconochive-"], [class*=" iconochive-"] {
+    font-family: 'Iconochive-Regular';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body.ia-module #file-dropper-wrap #file-dropper-img {
+    background-color: white;
+    max-height: 100px;
+}
+
+#file-dropper>img {
+    vertical-align: middle;
+    
+}
+#file-dropper> img ,.col-sm-pull-2{
+    border: 0;
+    margin-top: 40px;
+}
+.welcome .tabbys-dynamic {
+    max-width: none;
+    justify-content: flex-start;
+}
+.welcome .tabbys-dynamic .tabby {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.welcome.account-uniform .tabby.in a.stealth {
+    color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+ .welcome .tabby.in>div {
+    background-color: transparent;
+}
+.welcome .tabbys-dynamic {
+    max-width: none;
+    justify-content: flex-start;
+}
+.welcome .tabbys {
+    position: relative;
+    max-width: 7000px;
+    display: flex;
+   
+}
+.cont {
+margin-right: auto;
+margin-left: auto;
+padding-left: 60px;
+padding-right: 15px;
+}
+.account-description{
+    font-size: small;
+    font-weight: normal;
+}
+</style>
+<div class="welcome container-ia width-max account-uniform mt-40">
+    <div class="cont">
+        <div class="row">
+            <div class="col-xs-11 col-sm-2 welcome-left" style="text-align:center;">
+                <div id="file-dropper-wrap" >
+                    <div id="file-dropper"> </div>
+                    <img id="file-dropper-img" src="/person2.png" alt="" title="" style="max-width:100px;margin-top: 40px;">
+                </div>
+            </div>
+            <!--/.col-xs-1-->
+            <div class="clearfix visible-xs-block hidden-sm hidden-md hidden-lg"></div>
+            <div class="col-xs-12 col-sm-8 col-sm-pull-2" style="margin-left: -30px;">
+                <h1 style="font-size: 23px;color:#fff">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;"><%= [user.nom,user.prenom].join(' ') %> </font>
+                    </font>
+                </h1>
+                <h5 class="account-description">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;"><%= user.email %> </font>
+                    </font>
+                </h5>
+            </div>
+            <!--/.col-xs-12-->
+            <!--/.col-xs-11-->
+            <div class="col-xs-1 col-sm-2 col-sm-push-8 welcome-right js-playset-items js-playset-list">
+                
+            </div>
+        </div>
+        <!--/.row-->
+
+        <div class="tabbys tabbys-dynamic">
+
+            <div class="tabby in">
+                <div>
+                    <a id="" class="stealth tabby-default-finder" href="/dashboard/index"
+                        onclick="AJS.tabby(this,'tabby-uploads')" data-event-click-tracking="MyLibraryPage|tab-uploads">
+                        <span class="tabby-text">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">
+                                    uploads </font>
+                            </font>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="tabby">
+                <div>
+                    <a id="tabby-posts-finder" class="stealth" 
+                        >
+                        <span class="tabby-text">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">
+                                    COMMENTAIRES </font>
+                            </font>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="tabby">
+                <div>
+                    <a id="tabby-reviews-finder" class="stealth" href="/dashboard//add_doc"
+                        >
+                        <span class="tabby-text">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">
+                                    AJOUTER DOCUMENT </font>
+                            </font>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>

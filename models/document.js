@@ -13,16 +13,22 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     
       document.hasMany(models.commentaire,{
-        foreignKey: "doc_id"
+        foreignKey: "doc_id",
+        onDelete: 'CASCADE',
+        hooks: true
       }),
 
       // models.document.hasMany(models.ecrit)
       document.hasMany(models.ecrit,{
-        foreignKey: "doc_id"
+        foreignKey: "doc_id",
+        onDelete: 'CASCADE',
+        hooks: true
       }),
       
       document.belongsTo(models.user, {
-        foreignKey: 'user_id'
+        foreignKey: 'user_id',
+        onDelete: 'CASCADE',
+        hooks: true
     })
     }
   }

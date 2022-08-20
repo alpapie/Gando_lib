@@ -81,7 +81,10 @@ app.get('/contact',(req, res)=>{
 //     res.render('pages/inscription')
 // })
 
-
+//tous les url qui ne sont pas reconnue par le serveur
+app.get('*',(req, res)=>{
+    res.status(404).render('404')
+} )
 // port et lisn d'ecoute
 app.listen(3300,()=>{
     console.log("veiller cliquer sur ce lien: http://localhost:3300")

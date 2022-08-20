@@ -94,49 +94,81 @@ img {
    
 }
 </style>
-<%- include('./secondHeader.ejs') -%> 
+<%- include('./secondHeader.ejs') -%>  
+<%- include('./header_dasboard.ejs') -%>  
+
     <%- include ('./sidebar.ejs'); -%>
             <div class="col-lg-9">
-                <% for (document of documents){ %>   
-                    <div class="col-sm align-left">
-                        <div class="file-left">
-                            <a href="/detailFile/<%= document.id %>"
-                                data-id="60737124">
-                                <img class="img-zoom file-img"
-                                    src="<%= document.thumb ? document.thumb : '/icon/file.png'%>"
-                                    data-original="<%= document.thumbnail %>"
-                                    alt="<%= document.titre %>"
-                                    title="<%= document.titre %>"
-                                    loading="lazy">
-                            </a>
-                        </div>
-                        <div class="file-right">
-                            <a href="/dashboard/file/detailFile/<%= document.id %>"
-                                data-loc="1">
-                                <h2><%= document.titre %></h2>
-                            </a>
-                            <div class="file-info" data-id="60737124">
-                                <span class="fi-pagecount "><%= document.page %>  Pages</span><span class="ml-1 mr-1">·</span><span
-                                    class="fi-year "><%= document.annee.getFullYear();%> </span><span class="ml-1 mr-1">·</span><span
-                                    class="fi-size hidemobile"><%= document.size.toFixed(2) %>  MB</span> <br>
+                <% if (typeof documents !== 'undefined') { %>
+                    <% for (document of documents){ %>   
+                        <div class="col-sm align-left">
+                            <div class="file-left">
+                                <a href="/detailFile/<%= document.id %>"
+                                    data-id="60737124">
+                                    <img class="img-zoom file-img"
+                                        src="<%= document.thumb ? document.thumb : '/icon/file.png'%>"
+                                        data-original="<%= document.thumbnail %>"
+                                        alt="<%= document.titre %>"
+                                        title="<%= document.titre %>"
+                                        loading="lazy">
+                                </a>
                             </div>
-                            <% for (auteur of document.auteur ){ %> 
-                                <%= auteur["auteur.nom"] %> &nbsp;
-                            <% } %> 
-                            <span class="float-right">
-                                 <button class="btn btn-warning btn-responsive btn-sm mr-2">editer</button>
-                                 <button class="btn btn-danger btn-responsive btn-sm">suprimer</button>
-                            </span>
-                               
+                            <div class="file-right">
+                                <a href="/dashboard/file/detailFile/<%= document.id %>"
+                                    data-loc="1">
+                                    <h2><%= document.titre %></h2>
+                                </a>
+                                <div class="file-info" data-id="60737124">
+                                    <span class="fi-pagecount "><%= document.page %>  Pages</span><span class="ml-1 mr-1">·</span><span
+                                        class="fi-year "><%= document.annee.getFullYear();%> </span><span class="ml-1 mr-1">·</span><span
+                                        class="fi-size hidemobile"><%= document.size.toFixed(2) %>  MB</span> <br>
+                                </div>
+                                <% for (auteur of document.auteur ){ %> 
+                                    <%= auteur["auteur.nom"] %> &nbsp;
+                                <% } %> 
+                                <span class="float-right">
+                                    <button  class="btn btn-warning btn-responsive btn-sm mr-2" ><a href="/dashboard/file/file_edit/<%= document.id %>" style="color: #fff ;">editer</a> </button>
+                                    <button class="btn btn-danger btn-responsive btn-sm" onclick="modalchange('<%= document.id %>')" data-toggle="modal" data-target="#supdoc">suprimer</button>
+                                </span>
+                                
+                            </div>
+                            
+                            
                         </div>
-                        
-
+                    <% } %>
+                <% }else{ %>
+                    <div class="text-center">
+                         <button class="btn btn-lg btn-success " ><a href="/dashboard/add_doc" class="text-white"> Ajouter</a></button>
                     </div>
+                   
                 <% } %>
             </div>
-       
     </div>
     </div>
     </div>
+    <div class="modal fade" id="supdoc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                Voulez-vous vraiment supprimer ce document ?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger"><a id="linkDelete" href="" style="color: #fff;" >Oui</a> </button>
+            </div>
+          </div>
+        </div>
+    </div>
+<script>
+    let modalchange=function(id){
 
+        let link = '/dashboard/file/delete/'+id;
+        $('#linkDelete').attr('href',link);
+
+    }
+</script>
 <%- include('../footer') ; -%>

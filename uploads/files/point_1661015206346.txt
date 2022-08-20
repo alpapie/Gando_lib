@@ -1,0 +1,43 @@
+# from math import *
+import math
+class Point():
+    __abs=0.00
+    __ord=0.00
+    def __init__(self,absice,ordoner):
+        self.__abs=absice
+        self.__ord=ordoner
+        
+    @property
+    def abs(self):
+        return self.__abs
+    @abs.setter
+    def abs(self,absice):
+        self.__abs=absice
+        
+    @property
+    def ord(self):
+        return self.__ord
+    @ord.setter
+    def ord(self,ordone):
+        self.__ord=ordone
+        
+# 3) Définissez la méthode __str()__ qui retourne la représentation mathématique d’un point : (abs, ord).
+    def __str__(self):
+        return "("+str(self.abs)+","+str(self.ord)+")"
+    
+#     Ecrivez la méthode calculer_distance(self, p: ’Point’) -> float qui permet de calculer
+# la distance entre le point de l’objet courant (self) et l’objet p passé en paramètre. Nous rappelons
+# que la distance entre deux points A(x1,y1) et B(x2,y2), en mathématiques, est égale à :
+# 􀶥(𝑥􀬵 − 𝑥􀬶) 􀬶 + (𝑦􀬵 − 𝑦􀬶) 􀬶
+# Vous pouvez utiliser la fonction math.sqrt(a) pour calculer la racine carrée de a et
+# math.pow(x, y) pour calculer 𝑥􀯬
+
+    def calculer_distance(self, p):
+     distance= math.sqrt(math.pow((self.abs-p.abs),2)+math.pow((self.ord-p.ord),2))
+     return distance
+    # Ecrivez la méthode calculer_milieu(self, p: ’Point’) -> ’Point’ qui permet de calculer
+    def calculer_milieu(self, p):
+        yp=(self.ord+p.ord)/2
+        xp=(self.abs+p.abs)/2
+        p3=Point(xp,yp)
+        return p3

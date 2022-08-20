@@ -64,10 +64,10 @@ h1 {
 }
 .ebook-title {
     font-weight: 300;
-    line-height: 43px;
+    line-height: 33px;
     white-space: normal;
     color: #212121;
-    font-size: 29px;
+    font-size: 19px;
     margin: 0 0 0 0;
     max-height: 120px;
     overflow: hidden;
@@ -203,16 +203,90 @@ img {
     font-size: 13px;
    
 }
+.rating {
+  --dir: right;
+  --fill: gold;
+  --fillbg: rgba(100, 100, 100, 0.15);
+  --heart: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.328l-1.453-1.313q-2.484-2.25-3.609-3.328t-2.508-2.672-1.898-2.883-0.516-2.648q0-2.297 1.57-3.891t3.914-1.594q2.719 0 4.5 2.109 1.781-2.109 4.5-2.109 2.344 0 3.914 1.594t1.57 3.891q0 1.828-1.219 3.797t-2.648 3.422-4.664 4.359z"/></svg>');
+  --star: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.25l-6.188 3.75 1.641-7.031-5.438-4.734 7.172-0.609 2.813-6.609 2.813 6.609 7.172 0.609-5.438 4.734 1.641 7.031z"/></svg>');
+  --stars: 5;
+  --starsize: 3rem;
+  --symbol: var(--star);
+  --value: 1;
+  --w: calc(var(--stars) * var(--starsize));
+  --x: calc(100% * (var(--value) / var(--stars)));
+  block-size: var(--starsize);
+  inline-size: var(--w);
+  position: relative;
+  touch-action: manipulation;
+  -webkit-appearance: none;
+}
+[dir="rtl"] .rating {
+  --dir: left;
+}
+.rating::-moz-range-track {
+  background: linear-gradient(to var(--dir), var(--fill) 0 var(--x), var(--fillbg) 0 var(--x));
+  block-size: 100%;
+  mask: repeat left center/var(--starsize) var(--symbol);
+}
+.rating::-webkit-slider-runnable-track {
+  background: linear-gradient(to var(--dir), var(--fill) 0 var(--x), var(--fillbg) 0 var(--x));
+  block-size: 100%;
+  mask: repeat left center/var(--starsize) var(--symbol);
+  -webkit-mask: repeat left center/var(--starsize) var(--symbol);
+}
+.rating::-moz-range-thumb {
+  height: var(--starsize);
+  opacity: 0;
+  width: var(--starsize);
+}
+.rating::-webkit-slider-thumb {
+  height: var(--starsize);
+  opacity: 0;
+  width: var(--starsize);
+  -webkit-appearance: none;
+}
+.rating, .rating-label {
+  display: block;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+.rating-label {
+  margin-block-end: 1rem;
+}
+
+/* NO JS */
+.rating--nojs::-moz-range-track {
+  background: var(--fillbg);
+}
+.rating--nojs::-moz-range-progress {
+  background: var(--fill);
+  block-size: 100%;
+  mask: repeat left center/var(--starsize) var(--star);
+}
+.rating--nojs::-webkit-slider-runnable-track {
+  background: var(--fillbg);
+}
+.rating--nojs::-webkit-slider-thumb {
+  background-color: var(--fill);
+  box-shadow: calc(0rem - var(--w)) 0 0 var(--w) var(--fill);
+  opacity: 1;
+  width: 1px;
+}
+[dir="rtl"] .rating--nojs::-webkit-slider-thumb {
+  box-shadow: var(--w) 0 0 var(--w) var(--fill);
+}
 </style>
+<%- include('./header_dasboard.ejs') -%> 
 <%- include ('./sidebar.ejs'); -%>
+
         <div class="col-lg-9 mb-5">
-            <div class="ebook-main" itemprop="mainEntity" itemscope="" itemtype="http://schema.org/Book">
+            <div class="ebook-main" itemprop="mainEntity" >
                 <div class="ebook-left">
-                    <a href="/give-and-take-why-helping-others-drives-our-success-d58864799.html" rel="nofollow" onclick="c();">
+                    <a href="" rel="nofollow" >
                         <img class="ebook-img" itemprop="image"
-                            src="https://cdn.asaha.com/assets/thumbs/653/653f249a58f438ef343c5da5f023203d.jpg"
-                            alt="Give and Take: WHY HELPING OTHERS DRIVES OUR SUCCESS"
-                            title="Give and Take: WHY HELPING OTHERS DRIVES OUR SUCCESS" border="0">
+                            src="<%= document.thumb ? document.thumb : '/icon/file.png'%>"
+                            alt="<%= document.titre%>"
+                            title="<%= document.titre %>" border="0">
                     </a>
                 </div>
                 <div class="ebook-right">
@@ -220,24 +294,25 @@ img {
                         <div id="share-buttons">
                             <div class="addthis_inline_share_toolbox"></div>
                         </div>
-                        <span class="ebook-title " >Give and Take: WHY HELPING OTHERS DRIVES OUR SUCCESS</span>
+                        <span class="ebook-title " ><%= document.titre %></span>
                         <div class="ebook-file-info">
-                            <span class="info-green">260 Pages</span> <span class="m-info">·</span> <span
-                                class="info-green">2011</span> <span class="m-info">·</span>
-                            <span class="info-green">1.57 MB</span> <span class="m-info">·</span>
-                            <span class="info-green hidemobile">923,082 Downloads</span><span class="m-info hidemobile">·</span>
-                            <span class="info-green">English</span><br>
+                            <span class="info-green"><%= document.page %>  Pages</span> <span class="m-info">·</span> <span
+                                class="info-green"><%= document.annee.getFullYear();%></span> <span class="m-info">·</span>
+                            <span class="info-green"><%= document.size.toFixed(2) %> MB</span> <span class="m-info">·</span>
+                            <span class="info-green"><%= document.langue %> </span><br>
                         </div>
                         <div class="ebook-author">
+                            <% for (auteur of document.auteur ){ %> 
+                                <%= auteur["auteur.nom"] %> &nbsp;
+                            <% } %> 
                         </div>
-                        <div class="ebook-tags"><i class="fa fa-plus fa-plus-fix mr-1" aria-hidden="true"></i><a
-                                href="/category/113" onclick="ga('send', 'event', 'CategoryLink', 'EbookInfo');">Editor's Picks</a>
-                            <i class="fa fa-plus fa-plus-fix ml-2 mr-1" aria-hidden="true" style="margin-left:6px;"></i> <a
-                                href="/category/112" onclick="ga('send', 'event', 'CategoryLink', 'EbookInfo');">Most Popular</a> <i
-                                class="fa fa-plus fa-plus-fix ml-2 mr-1" aria-hidden="true" style="margin-left:6px;"></i> <a
-                                href="/category/10" onclick="ga('send', 'event', 'CategoryLink', 'EbookInfo');">Religion</a> <i
-                                class="fa fa-plus fa-plus-fix ml-2 mr-1" aria-hidden="true" style="margin-left:6px;"></i> <a
-                                href="/category/13" onclick="ga('send', 'event', 'CategoryLink', 'EbookInfo');">Spiritualty</a>
+                        
+                        <div class="ebook-tags">
+                            <% for( let i = 0; i < categories.length; i++ ) { %>
+                                <i class="fa fa-plus fa-plus-fix mr-1" aria-hidden="true"></i><a
+                                href="/category/113" ><%= categories[i] %> </a>
+                            <% } %>
+
                         </div>
                     </div>
                 </div>
@@ -249,17 +324,125 @@ img {
                         Preview </button>
                     <span id="download-button"><a id="download-button-link" class="btn btn-primary btn-responsive"
                             href="/give-and-take-why-helping-others-drives-our-success-d58864799.html" rel="nofollow"
-                            onclick="c();ga('send', 'event', 'Download', 'ebook-page');setCookie('disableVideo', 1, 1);"
-                            role="button" style="font-weight:500;">Download</a></span>
-                    <button id="btnGroupDrop1" type="button"
-                        class="btn btn-primary btn-more dropdown-toggle dropdown-toggle-no-arrow" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-ellipsis-v"></i>
-                    </button>
-                    
+                            role="button" style="font-weight:500; color: #fff;">Download</a></span> 
                 </div>
             </div>
-           
+           <!-- description du document et les commentaire -->
+                <div class="product__info__detailed" style="min-height: 500px;">
+                    <div class="pro_details_nav nav justify-content-start" role="tablist">
+                        <a class="nav-item nav-link active" data-toggle="tab" href="#nav-details" role="tab">Details</a>
+                        <a class="nav-item nav-link" data-toggle="tab" href="#nav-review" role="tab">Commentaire</a>
+                    </div>
+                    <div class="tab__container">
+                        <!-- Start Single Tab Content -->
+                        <div class="pro__tab_label tab-pane fade show active" id="nav-details" role="tabpanel">
+                            <div class="description__attribute">
+                                <p><%= document.description %> </p>
+                            </div>
+                        </div>
+                        <!-- End Single Tab Content -->
+                        <!-- Start Single Tab Content -->
+                        <div class="pro__tab_label tab-pane fade" id="nav-review" role="tabpanel">
+                            <div class="blog-details content">
+                                <article class="blog-post-details">
+                                    <div class="post_wrapper">
+                                        <ul class="blog_meta">
+                                            <li><a href="#">3 comments</a></li>
+                                            <li> / </li>
+                                            <li>Tags:<span>fashion</span> <span>t-shirt</span> <span>white</span></li>
+                                        </ul>
+                                        <ul class="social__net--4 d-flex justify-content-start">
+                                            <li><a href="#"><i class="zmdi zmdi-rss"></i></a></li>
+                                            <li><a href="#"><i class="zmdi zmdi-linkedin"></i></a></li>
+                                            <li><a href="#"><i class="zmdi zmdi-vimeo"></i></a></li>
+                                            <li><a href="#"><i class="zmdi zmdi-tumblr"></i></a></li>
+                                            <li><a href="#"><i class="zmdi zmdi-google-plus"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </article>
+                                <div class="comments_area">
+                                    <h3 class="comment__title"><%= document.comment.length %> COMMENTAIRES                                  
+                                         <a onclick="form_show()" id="add_comment" class="d-flex justify-content-end" style="color:black ; cursor: pointer;"><i class="bi bi-plus"></i>add Reviews</a>
+                                    </h3>
+                                    <div id="comment">
+                                        <% for( comment of document.comment ) { %>
+                                            <ul class="comment__list" id="comment">
+                                                <li>
+                                                    <div class="wn__comment">
+                                                        <div class="thumb">
+                                                            <img src="/images/blog/comment/1.jpeg" alt="comment images">
+                                                        </div>
+                                                        <div class="content">
+                                                            <div class="comnt__author d-block d-sm-flex">
+                                                                <span><a href="#"><%= comment['user.nom']  %> <%= comment['user.prenom']  %> </a></span>
+                                                                <div class="reply__btn">
+                                                                 <% for( let index = 0; index < comment.note; index++ ) { %>
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                                      </svg>
+                                                                 <% } %>
+                                                                 <% for( let index = 0; index < 5 - comment.note; index++ ) { %>
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                                                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                                    </svg>
+                                                                 <% } %>
+                                                                </div>
+                                                            </div>
+                                                            <small><%= comment.createdAt.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })  %>  at <%= comment.createdAt.getHours()  %>h:<%= comment.createdAt.getMinutes()  %>mn:<%= comment.createdAt.getSeconds() %> s</small>
+                                                            <p><%= comment.content %> </p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        <% } %>
+                                    </div>
+                                </div>
+                                <div class="comment_respond" id="form" style="display: none;">
+                                    <% if (locals.flash && locals.flash.error) {%>
+                                        <div class="alert alert-danger">
+                                            <strong>Error!</strong>
+                                            <%= flash.error %>
+                                        </div>
+                                        <% } %>
+                                    <h3 class="reply_title"><small><a href="#">Laissez un commentaire </a></small></h3>
+                                    <form class="comment__form" action="/dashboard/file/add_comment" method="post">
+                                        <input type="hidden" name="user_id" value="<%= locals.user.id %> " >
+                                        <input type="hidden" name="doc_id" value="<%= document.id %> ">
+                                        <p>Veiller ecrir un message respectueux sinon vous risquer d'etre bani</p>
+                                        <div class="input__box">
+                                            <label>Comment</label>
+                                            <textarea name="content"></textarea>
+                                        </div>
+                                        <label class="rating-label"><strong>No JS, using <code>box-shadow</code></strong>
+                                            <input
+                                              class="rating rating--nojs"
+                                              max="5"
+                                              step="1"
+                                              type="range"
+                                              name="note"
+                                              value="1">
+                                          </label>
+                                        <div class="submite__btn">
+                                            <button class="btn" onclick="form_show()"> post Comment</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            <!-- <div class="aReview" id="review-1660564866">
+                                <b>Reviewer:</b>
+                                        <a href="https://archive.org/details/%40alpapie" data-event-click-tracking="ItemReviews|ReviewerLink">alpapie</a>
+                                      -
+                                <span alt="3.00 out of 5 stars" title="3.00 out of 5 stars"><span class="iconochive-favorite size-75-percent" aria-hidden="true"></span><span class="icon-label sr-only">favorite</span><span class="iconochive-favorite size-75-percent" aria-hidden="true"></span><span class="icon-label sr-only">favorite</span><span class="iconochive-favorite size-75-percent" aria-hidden="true"></span><span class="icon-label sr-only">favorite</span></span>      -
+                                August 15, 2022      <br>
+                                <b>Subject:</b>
+                                un livre pas comme les autre      <div class="breaker-breaker">
+                                  c'est un excellent livre que je recommande vraiment      </div>
+                            </div> -->
+                        </div>
+                        <!-- End Single Tab Content -->
+                    </div>
+                </div>
             <div class="mb-3 mt-3" id="similar-files">
                 <font style="vertical-align: inherit;"><span class="hidemobile">
                         <font style="vertical-align: inherit;">Article</font>
@@ -270,9 +453,7 @@ img {
                     <font style="vertical-align: inherit;"></font>
                 </span>
                 <div style="float:right;">
-                    <select class="select-style" tabindex="9" onchange="
-                                                                            loadSimilar(this.value, 0);
-                                                        ga('send', 'event', 'Filter By Page Count', 'ebook-page');"
+                    <select class="select-style" tabindex="9" 
                         style="width: 163px;font-size: 13px;">
                         <option value="">
                             <font style="vertical-align: inherit;">
@@ -328,14 +509,8 @@ img {
                         <% for (auteur of document.auteur ){ %> 
                             <%= auteur["auteur.nom"] %> &nbsp;
                         <% } %> 
-                        <span class="float-right">
-                             <button class="btn btn-warning btn-responsive btn-sm mr-2">editer</button>
-                             <button class="btn btn-danger btn-responsive btn-sm">suprimer</button>
-                        </span>
-                           
+                       
                     </div>
-                    
-
                 </div>
             <% } %>
         </div>
@@ -343,5 +518,25 @@ img {
 </div>
 </div>
 
+<script>
+let modalchange=function(id){
+    let link = '/dashboard/file/delete/'+id;
+    $('#linkDelete').attr('href',link);
+}
+    let form_show=function(){
+       let form=document.getElementById('form');
+       let comment=document.getElementById('comment');
+
+         if(form.style.display=='none'){
+              form.style.display='block';
+              comment.style.display='none';
+              let add_comment=document.getElementById('add_comment').innerHTML="Voire les commentaires";
+        }else{  
+            form.style.display='none';
+            comment.style.display='block';
+            let add_comment=document.getElementById('add_comment').innerHTML='<i class="bi bi-plus"></i>add Reviews';
+        }
+    }
+</script>
 
 <%- include('../footer') ; -%>

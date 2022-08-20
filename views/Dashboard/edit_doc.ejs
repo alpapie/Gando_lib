@@ -1,0 +1,394 @@
+<%- include('../header'); -%> 
+<%- include('./secondHeader.ejs') -%>  
+<style>
+    .nav-bottom {
+       
+    }
+        .ul {
+            list-style-type: none;
+            width: 200px;
+             min-height: 200px !important;
+            background-color: #f1f1f1;
+            margin-right: -80px;
+            margin-left: -50px;
+            margin-top:100px;
+        }
+       .ul > li a {
+            display: block !important;;
+            color: #000 !important;;
+            padding: 8px 16px !important;;
+            text-decoration: none !important;;
+        }
+    
+        /* Change the link color on hover */
+        .aa:hover {
+            background-color: #fad390 !important;;
+            color: #fff !important;;
+        }
+
+    
+        
+    </style>
+<!-- Start My Account Area -->
+<!-- certaines div son ouvert dans le side bare et fermer ici -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <ul class="ul" style="cursor: pointer;">
+                <li><a class="aa"  onclick="f_form_all()">
+                Modifier Tout</a></li>
+                <li><a class="aa"  onclick="f_form_info()">
+                Modifier file info</a></li>
+                <li><a class="aa"  onclick="f_form_doc()">
+                Modifier File doc</a></li>
+                <li><a class="aa"  onclick="f_form_auteur()">
+                Modifier File auteur</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-9 order-1 order-lg-2">
+            <section class="my_account_area pt--80 pb--55 bg--white">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="my__account__wrapper">
+                            <% if (locals.flash && locals.flash.error) {%>
+                                <div class="alert alert-danger">
+                                    <strong>Error!</strong>
+                                    <%= flash.error %>
+                                </div>
+                                <% } %>
+                            <h3 class="account__title" >Modification option:<i id="title_form">all</i></h3>
+                            <form action="" id="form_all" method="post" enctype="multipart/form-data">
+                                <div class="account__form">
+                                    <div class="row">
+                                        <input type="hidden" name="doc_id" value="<%= data.id %> ">
+                                        <input type="hidden" name="type" value="article">
+                                        <div class="col-lg-6 ">
+                                            <div class="input__box">
+
+                                                <label>titre <span>*</span></label>
+                                                <input type="text" required name="titre"
+                                                    value=" <%= data ? data.titre : '' %> ">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 ">
+                                            <div class="input__box">
+
+                                                <label>editeur <span>*</span></label>
+                                                <input type="text" required name="editeur"
+                                                    value=" <%= data ? data.editeur : '' %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6"> <label class="input__box">langue <span>*</span></label>
+                                            <div class="">
+                                                <label class="radio-inline mr-3"><input type="radio" name="langue"
+                                                        value="Francais" checked>Francais</label>
+                                                <label class="radio-inline"><input type="radio" name="langue"
+                                                        value="Anglais">Anglais</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">category<span>*</span></label>
+                                                <select id="choices-multiple-remove-button"
+                                                    placeholder="Select upto 5 tags" required name="category" multiple>
+                                                    <% for (category of categorys){ %>
+                                                        <option>
+                                                            <%= category.intituler %>
+                                                        </option>
+                                                        <% } %>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="input__box">
+                                                <label>nombre de page <span>*</span></label>
+                                                <input type="number" required name="page" min="1"
+                                                    value=" <%= data ? data.page : '' %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="input__box">
+                                                <label>isbn10</label>
+                                                <input type="text" name="isbn10"
+                                                    value=" <%= data ? data.isbn10 : '' %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="input__box">
+                                                <label>Date de cration <span>*</span></label>
+                                                <input type="date" required name="annee"
+                                                    value=" <%= data ? data.annee : '' %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="input__box">
+                                                <label>fichier <span>*</span></label>
+                                                <input type="file" required name="fichier">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="input__box">
+                                                <label>Description <span>*</span></label>
+                                                <textarea name="description" id="" cols="40"
+                                                    rows="5"><%= data ? data.description : '' %></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h2 class="align-center">Auteur(s)</h2>
+                                    <div id="auteur_form_1">
+                                        <%for(auteur of data.auteur ) {%>  
+                                            <input type="hidden" name="aut_id" value="<%= auteur['auteur.id'] %> ">
+                                            
+                                                <div class="row account__form"> 
+                                                    <div class="col-lg-4">
+                                                        <div class="input__box">
+                                                            <label>Nom <span>*</span></label>
+                                                            <input type="text" name="nom" placeholder="mamoudou ndiaye"
+                                                                value=" <%= auteur ? auteur['auteur.nom']: '' %>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="input__box">
+                                                            <label>Email <span>*</span></label>
+                                                            <input type="email" name="email"
+                                                                value=" <%= auteur  ? auteur['auteur.email'] : '' %>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="input__box">
+                                                            <label>telephone <span>*</span></label>
+                                                            <input type="text" name="numero" value=" <%= auteur ? auteur['auteur.numero']: '' %>">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                        <% } %> 
+                                    </div>
+                                    <div class="float-end" style="margin-left: 503px;">
+                                        <button type="button" class="btn btn-warning" id="add_auteur_1">Ajouter un auteur</button>
+                                    </div>
+                                    <div class="form__btn ">
+                                        <button>Register</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                    <!-- form pour les info du fichier -->
+                    <form action="" style="display: none;" id="form_info" method="post" enctype="multipart/form-data">
+                        <div class="account__form">
+                            <div class="row">
+                                <input type="hidden" name="doc_id" value="<%= data.id %> ">
+                                <input type="hidden" name="type" value="article">
+                                <div class="col-lg-6 ">
+                                    <div class="input__box">
+
+                                        <label>titre <span>*</span></label>
+                                        <input type="text" required name="titre"
+                                            value=" <%= data ? data.titre : '' %> ">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 ">
+                                    <div class="input__box">
+
+                                        <label>editeur <span>*</span></label>
+                                        <input type="text" required name="editeur"
+                                            value=" <%= data ? data.editeur : '' %>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6"> <label class="input__box">langue <span>*</span></label>
+                                    <div class="">
+                                        <label class="radio-inline mr-3"><input type="radio" name="langue"
+                                                value="Francais" checked>Francais</label>
+                                        <label class="radio-inline"><input type="radio" name="langue"
+                                                value="Anglais">Anglais</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">category<span>*</span></label>
+                                        <select id="choices-multiple-remove-button"
+                                            placeholder="Select upto 5 tags" required name="category" multiple>
+                                            <% for (category of categorys){ %>
+                                                <option>
+                                                    <%= category.intituler %>
+                                                </option>
+                                                <% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input__box">
+                                        <label>nombre de page <span>*</span></label>
+                                        <input type="number" required name="page" min="1"
+                                            value=" <%= data ? data.page : '' %>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input__box">
+                                        <label>isbn10</label>
+                                        <input type="text" name="isbn10"
+                                            value=" <%= data ? data.isbn10 : '' %>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input__box">
+                                        <label>Date de cration <span>*</span></label>
+                                        <input type="date" required name="annee"
+                                            value=" <%= data ? data.annee : '' %>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input__box">
+                                        <label>Description <span>*</span></label>
+                                        <textarea name="description" id="" cols="40"
+                                            rows="5"><%= data ? data.description : '' %></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="form__btn ">
+                                <button>Register</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- form pour le document -->
+                    <form action="" id="form_doc" style="display: none;" method="post" enctype="multipart/form-data">
+                        <div class="account__form">
+                            <div class="row">
+                                <input type="hidden" name="doc_id" value="<%= data.id %> ">
+                                <input type="hidden" name="type" value="article">
+                                <div class="col-lg-6">
+                                    <div class="input__box">
+                                        <label>fichier <span>*</span></label>
+                                        <input type="file" required name="fichier">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form__btn ">
+                                <button>Register</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- for auteur -->
+                    <form action="" id="form_auteur" style="display: none;" method="post" enctype="multipart/form-data">
+                        <div class="account__form">
+                            <input type="hidden" name="doc_id" value="<%= data.id %> ">
+                            <input type="hidden" name="type" value="article">
+                            <h2 class="align-center">Auteur(s)</h2>
+                            <div id="auteur_form">
+                                <%for(auteur of data.auteur ) {%> 
+                                    <input type="hidden" name="aut_id" value="<%= auteur['auteur.id'] %> ">
+                                    <div class="row account__form">
+                                        <div class="col-lg-4">
+                                            <div class="input__box">
+                                                <label>Nom <span>*</span></label>
+                                                <input type="text" name="nom" placeholder="mamoudou ndiaye"
+                                                    value=" <%= auteur ? auteur['auteur.nom']: '' %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="input__box">
+                                                <label>Email <span>*</span></label>
+                                                <input type="email" name="email"
+                                                    value=" <%= auteur  ? auteur['auteur.email'] : '' %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="input__box">
+                                                <label>telephone <span>*</span></label>
+                                                <input type="text" name="numero" value=" <%= auteur ? auteur['auteur.numero']: '' %>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %> 
+                            </div>
+                            <div class="float-end" style="margin-left: 503px;">
+                                <button type="button" class="btn btn-warning" id="add_auteur">Ajouter un auteur</button>
+                            </div>
+                            <div class="form__btn ">
+                                <button>Register</button>
+                            </div>
+                        </div>
+                    </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+<%- include('../footer'); -%> 
+<script>
+$(document).ready(function(){
+    var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+       removeItemButton: true,
+       maxItemCount:5,
+       searchResultLimit:5,
+       renderChoiceLimit:5
+     }); 
+});
+    let form_all=document.getElementById('form_all');
+    let form_doc=document.getElementById('form_doc');
+    let form_auteur=document.getElementById('form_auteur');
+    let form_info=document.getElementById('form_info');
+    let title_form=document.getElementById('title_form');
+
+
+    //methode por le formulaire de modification all
+    let f_form_all=function(){
+        form_all.style.display='block';
+        form_doc.style.display='none';
+        form_auteur.style.display='none';
+        form_info.style.display='none';
+        title_form.innerHTML='all';
+    }
+    //methode pour les info du form
+    let f_form_info=function(){
+        form_all.style.display='none';
+        form_doc.style.display='none';
+        form_auteur.style.display='none';
+        form_info.style.display='block';
+        title_form.innerHTML='info du document';
+    }
+    //methode pour le doc
+    let f_form_doc=function(){
+        form_all.style.display='none';
+        form_doc.style.display='block';
+        form_auteur.style.display='none';
+        form_info.style.display='none';
+        title_form.innerHTML='file only';
+    }
+    //methode pour l'auteur
+    let f_form_auteur=function(){
+        form_all.style.display='none';
+        form_doc.style.display='none';
+        form_auteur.style.display='block';
+        form_info.style.display='none';
+        title_form.innerHTML='les auteur(e)(s)';
+    }
+
+    //methode pour ajouter un auteur form option: auteur_form
+    let add_auteur=document.getElementById('add_auteur');
+    let auteur_form=document.getElementById('auteur_form');
+    add_auteur.addEventListener('click',function(){
+    let new_auteur_form='<div class="row account__form"><div class="col-lg-3"><input type="hidden" name="aut_id" value="null"><div class="input__box"><label>Nom <span>*</span></label><input type="text" name="nom" value=""></div></div><div class="col-lg-4"><div class="input__box"><label>Email <span>*</span></label><input type="email" name="email"value=""></div></div><div class="col-lg-3"><div class="input__box"><label>telephone <span>*</span></label><input type="text" name="numero" value=""></div></div><div class="col-lg-2 mt-4 text-align-left" style="margi-top:1px;"><button type="button" class="btn btn-danger" id="delete_auteur"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16"><path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/></svg></button></div></div>'
+    auteur_form.insertAdjacentHTML('beforeend',new_auteur_form);
+});
+$(document).on('click','#delete_auteur',function(){
+    $(this).parent().parent().remove();
+});
+
+//methode pour ajouter un auteur form option: all
+let add_auteur_1=document.getElementById('add_auteur_1');
+    let auteur_form_1=document.getElementById('auteur_form_1');
+    add_auteur_1.addEventListener('click',function(){
+    let new_auteur_form='<div class="row account__form"><div class="col-lg-3"><input type="hidden" name="aut_id" value="null"><div class="input__box"><label>Nom <span>*</span></label><input type="text" name="nom" value=""></div></div><div class="col-lg-4"><div class="input__box"><label>Email <span>*</span></label><input type="email" name="email"value=""></div></div><div class="col-lg-3"><div class="input__box"><label>telephone <span>*</span></label><input type="text" name="numero" value=""></div></div><div class="col-lg-2 mt-4 text-align-left" style="margi-top:1px;"><button type="button" class="btn btn-danger" id="delete_auteur"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16"><path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/></svg></button></div></div>'
+    auteur_form_1.insertAdjacentHTML('beforeend',new_auteur_form);
+});
+$(document).on('click','#delete_auteur',function(){
+    $(this).parent().parent().remove();
+});
+
+</script>

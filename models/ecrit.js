@@ -13,11 +13,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       
       ecrit.belongsTo(models.auteur, {
-        foreignKey: 'aut_id'
+        foreignKey: 'aut_id',
+        onDelete: 'CASCADE',
+        hooks: true
     }),
 
    ecrit.belongsTo(models.document, {
-       foreignKey: 'doc_id'
+       foreignKey: 'doc_id',
+        onDelete: 'CASCADE',
+        hooks: true
     })
 
     }

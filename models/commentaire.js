@@ -13,11 +13,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       
       commentaire.belongsTo(models.user, {
-      foreignKey: 'user_id'
+      foreignKey: 'user_id',
+      onDelete: 'CASCADE',
+      hooks: true
       }),
 
       commentaire.belongsTo(models.document, {
-      foreignKey: 'doc_id'
+      foreignKey: 'doc_id',
+      onDelete: 'CASCADE',
+      hooks: true
     })
     
     }
@@ -25,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   commentaire.init({
     user_id: DataTypes.INTEGER,
     doc_id: DataTypes.INTEGER,
+    note: DataTypes.INTEGER,
     content: DataTypes.STRING
   }, {
     sequelize,
